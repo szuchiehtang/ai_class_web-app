@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Little Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,500;1,700&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ================= Library Banner ================= -->
+  <header class="banner" aria-label="Header">
+    <!-- 全寬 GIF 封面 -->
+    <!-- 1920px 放大版影片；瀏覽器不支援影片時退回原本的 GIF -->
+    <video class="banner-gif" autoplay muted loop playsinline aria-label="A girl flying on a broom over the sea with seagulls">
+      <source src="assets/sea-flight.webm" type="video/webm">
+      <source src="assets/sea-flight.mp4" type="video/mp4">
+      <img class="banner-gif" src="assets/sea-flight.gif" alt="A girl flying on a broom over the sea with seagulls">
+    </video>
+    <div class="warm-tint" aria-hidden="true"></div>
+    <div class="lamp-glow" aria-hidden="true"></div>
+    <div class="dust" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+    <div class="banner-text">
+      <p class="date-line" id="today"></p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- ================= Left Column ================= -->
+    <div class="col">
+      <section class="card quote-card" style="--i:0" id="quote">
+        <p class="quote-text" id="quoteText"></p>
+        <p class="quote-by" id="quoteBy"></p>
+      </section>
+
+      <figure class="photo" style="--i:1">
+        <img src="assets/flying-witch.gif" alt="A girl flying on a broom over a seaside town" loading="lazy">
+        <figcaption>—fly away ⋆˙⟡</figcaption>
+      </figure>
+
+      <section class="card" id="music" style="--i:2">
+        <h2 class="deco-title">spotify ↻ ◁ II ▷ ↺</h2>
+        <form class="inline-form" id="spotifyForm">
+          <input id="spotifyUrl" placeholder="Paste a Spotify playlist / album / track link" autocomplete="off">
+          <button class="btn small" type="submit">Load</button>
+        </form>
+        <iframe id="spotifyFrame" class="spotify" title="Spotify player"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </section>
+
+      <section class="card news-card" id="news" style="--i:3">
+        <div class="card-head">
+          <h2 class="deco-title">—world news</h2>
+          <select id="newsSource" aria-label="News source"></select>
+          <button class="icon-btn" id="newsRefresh" aria-label="Refresh">⟳</button>
+        </div>
+        <ul class="news-list" id="newsList"></ul>
+        <p class="muted tiny" id="newsMeta"></p>
+      </section>
+    </div>
+
+    <!-- ================= Middle Column ================= -->
+    <div class="col">
+      <section class="card clock-card" style="--i:1">
+        <h2 class="deco-title">—check the time</h2>
+        <div class="clock" aria-live="off">
+          <span id="clockH">00</span><b class="colon">:</b><span id="clockM">00</span><b class="colon">:</b><span id="clockS" class="sec">00</span>
+        </div>
+        <p class="clock-date" id="clockDate"></p>
+      </section>
+
+      <div class="food-row" aria-hidden="true">
+        <img src="assets/cut-pancake.png" alt="">
+        <span class="steam-wrap"><span class="steam"></span><img src="assets/cut-ramen.png" alt=""></span>
+        <img src="assets/cut-sandwich.png" alt="">
+      </div>
+
+      <section class="card streak-card" style="--i:2">
+        <h2 class="deco-title center">-ˋ reading streak ˊ-</h2>
+        <div class="streak">
+          <span class="spark s-a" aria-hidden="true">✦</span>
+          <span id="streakCount" class="streak-num">0</span>
+          <span class="streak-unit">days</span>
+          <span class="spark s-b" aria-hidden="true">✧</span>
+        </div>
+        <button class="btn small" id="streakBtn" type="button">I read today!</button>
+      </section>
+
+      <p class="divider" aria-hidden="true">✧⋆˚⋆✧⋆˚⋆✧⋆˚⋆✧</p>
+
+      <section class="card" id="memoCard" style="--i:3">
+        <h2 class="deco-title">memo.</h2>
+        <textarea id="memo" rows="6" placeholder="Write something… saved automatically"></textarea>
+      </section>
+
+      <figure class="photo" style="--i:4">
+        <img src="assets/cozy-room.gif" alt="A cluttered, cozy room full of trinkets" loading="lazy">
+        <figcaption>—a cozy little mess ☕︎</figcaption>
+      </figure>
+
+      <div class="food-row" aria-hidden="true">
+        <img src="assets/cut-yogurt.png" alt="">
+        <img src="assets/cut-pasta.png" alt="">
+        <img src="assets/cut-steak.png" alt="">
+      </div>
+    </div>
+
+    <!-- ================= Right Column (wide) ================= -->
+    <div class="col wide-col">
+      <section class="card calendar-card" id="calendar" style="--i:2">
+        <div class="card-head">
+          <h2 class="deco-title">✦ calendar</h2>
+          <button class="icon-btn" id="prevMonth" aria-label="Previous month">◀</button>
+          <span id="monthLabel" class="month-label"></span>
+          <button class="icon-btn" id="nextMonth" aria-label="Next month">▶</button>
+          <button class="btn ghost small" id="todayBtn">Today</button>
+          <button class="btn small" id="addEventBtn">＋ Event</button>
+        </div>
+        <div class="weekdays">
+          <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+        <div class="agenda">
+          <h3 id="agendaTitle"></h3>
+          <ul id="agendaList" class="agenda-list"></ul>
+        </div>
+      </section>
+
+      <section class="card lists-card" id="lists" style="--i:3">
+        <div class="cover"><img src="assets/sky-castle.gif" alt="A castle floating among the clouds" loading="lazy"></div>
+        <h2 class="deco-title">ꕤ get back on track—</h2>
+        <nav class="tabs" id="tabs" role="tablist"></nav>
+        <form class="inline-form" id="taskForm">
+          <input id="taskInput" placeholder="Add a new item…" maxlength="60" autocomplete="off">
+          <button class="btn small" type="submit">Add</button>
+        </form>
+        <ul class="task-list" id="taskList"></ul>
+        <p class="muted tiny">Tap 📅 to put an item on the calendar.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">⋆｡˚ festina lente — make haste slowly ˚｡⋆</footer>
+
+  <!-- ================= Event Modal ================= -->
+  <dialog id="eventDialog">
+    <form method="dialog" id="eventForm" class="event-form">
+      <h3 class="deco-title">new event.</h3>
+      <label>Title
+        <input id="evTitle" required maxlength="40">
+      </label>
+      <div class="row">
+        <label>Category
+          <select id="evCat"></select>
+        </label>
+        <label>Time
+          <input type="time" id="evTime" value="19:00">
+        </label>
+      </div>
+      <label class="check">
+        <input type="checkbox" id="evRepeat"> Repeats weekly (e.g. gym, lab meeting)
+      </label>
+      <label id="dateField">Date
+        <input type="date" id="evDate">
+      </label>
+      <fieldset id="weekdayField" class="weekday-pick" hidden>
+        <legend>Repeat on</legend>
+      </fieldset>
+      <div class="dialog-actions">
+        <button class="btn ghost" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn" value="ok" id="evSave">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
